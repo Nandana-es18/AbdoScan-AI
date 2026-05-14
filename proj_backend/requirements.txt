@@ -1,0 +1,7 @@
+torch
+monai
+numpy
+matplotlib
+scikit-image
+nibabel
+tqdm

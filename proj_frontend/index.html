@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroScan | Multimodal Segmentation & Analysis</title>
+    <meta name="description" content="Advanced AI-powered abdominal organ segmentation and anomaly detection.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="background-glow"></div>
+
+    <header>
+        <nav class="glass-panel">
+            <div class="logo">
+                <i class="fa-solid fa-brain-circuit"></i>
+                <span>NeuroScan</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active">Analyze</a>
+                <a href="#">History</a>
+                <a href="#">Settings</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <h1>Medical Imaging Intelligence</h1>
+            <p class="subtitle">Upload your CT or MRI scans for advanced organ segmentation and anomaly detection.</p>
+        </section>
+
+        <section class="upload-container glass-panel">
+            <form id="analyze-form">
+                <div class="modality-selector">
+                    <span class="selector-label">Select Modality</span>
+                    <div class="toggle-switch">
+                        <input type="radio" name="modality" id="mri" value="mri" checked>
+                        <label for="mri" class="toggle-option">
+                            <i class="fa-solid fa-magnet"></i> MRI
+                        </label>
+
+                        <input type="radio" name="modality" id="ct" value="ct">
+                        <label for="ct" class="toggle-option">
+                            <i class="fa-solid fa-x-ray"></i> CT Scan
+                        </label>
+                        <div class="slider"></div>
+                    </div>
+                </div>
+
+                <div class="drop-zone" id="drop-zone">
+                    <div class="drop-zone-content">
+                        <div class="icon-wrapper">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+                        <h3>Drag & Drop your scan here</h3>
+                        <p>or <span class="browse-link">browse files</span></p>
+                        <input type="file" id="file-input" accept=".dcm,.nii,.nii.gz,.gz,.jpg,.jpeg,.png" hidden>
+                        <p class="file-info" id="file-info">Supported formats: DICOM, NIfTI, JPG, PNG</p>
+                    </div>
+                    <div class="file-preview hidden" id="file-preview">
+                        <i class="fa-solid fa-file-medical"></i>
+                        <span id="file-name">filename.dcm</span>
+                        <button type="button" id="remove-file" aria-label="Remove file">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" disabled id="submit-btn">
+                    <span>Analyze Scan</span>
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Result Modal -->
+    <div id="result-modal" class="modal hidden">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h2>Analysis Result</h2>
+                <div class="zoom-controls">
+                    <button id="zoom-out" class="icon-btn" title="Zoom Out"><i
+                            class="fa-solid fa-magnifying-glass-minus"></i></button>
+                    <button id="zoom-in" class="icon-btn" title="Zoom In"><i
+                            class="fa-solid fa-magnifying-glass-plus"></i></button>
+                    <button id="close-modal" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="result-image-container">
+                    <img id="result-image" src="" alt="Segmentation Result" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="report-actions">
+                    <button id="btn-liver-report" class="submit-btn report-btn">
+                        <i class="fa-solid fa-file-medical"></i> Liver Report
+                    </button>
+                    <button id="btn-kidney-report" class="submit-btn report-btn">
+                        <i class="fa-solid fa-file-medical"></i> Kidney Report
+                    </button>
+                </div>
+                <a id="download-link" href="#" download="segmentation_result.png" class="submit-btn download-btn">
+                    <i class="fa-solid fa-download"></i> Download Result
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diagnostic Report Modal -->
+    <div id="diagnostic-modal" class="modal hidden">
+        <div class="modal-content glass-panel diagnostic-content">
+            <div class="modal-header">
+                <h2>Clinical Diagnostic Report</h2>
+                <div class="zoom-controls">
+                    <button id="close-diag-modal" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+            <div class="modal-body diag-body">
+                <!-- 3-Panel Image -->
+                <div class="diag-image-container">
+                    <img id="diag-image" src="" alt="Diagnostic Report Image" />
+                </div>
+
+                <!-- Clinical Text Stats -->
+                <div class="diag-stats" id="diag-stats-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

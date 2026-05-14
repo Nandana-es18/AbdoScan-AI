@@ -1,0 +1,14 @@
+.venv/
+.vscode/
+__pycache__/
+outputs/
+persistent_cache/
+test_results/
+uploads/
+data/
+
+*.pyc
+*.pt
+*.pth
+*.pth.tar
+*.h5
